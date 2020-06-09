@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MONGODB_URI = 'mongodb+srv://charkuaytiao:TB198937@cluster0-etkox.mongodb.net/holiday?retryWrites=true&w=majority' || 'mongodb://localhost/' + 'holiday'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/' + 'holiday'
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
