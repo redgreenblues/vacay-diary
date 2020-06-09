@@ -8,10 +8,13 @@ module.exports = app => {
     // New route
     app.get('/new', controller.createPage)
 
-    // My itinerary route
-    app.get('/my-itinerary', controller.showAllItineraries)
+    // My itineraries route
+    app.get('/my-itineraries', controller.showAllItineraries)
+
+    // Show individual itinerary route
+    app.get('/my-itineraries/:destination', controller.showItinerary)
 
     /* ======================== Action Routes ======================== */
     // Post route
-    app.post('/my-itinerary', controller.create)
+    app.post('/my-itineraries', controller.create)
 };

@@ -1,7 +1,6 @@
 /* ====================================================
                         GENERAL
 ==================================================== */
-
 body {
     font-family: "Open Sans", sans-serif;
     color: #334240;
@@ -235,20 +234,95 @@ h1, h2, h3, h4, h5, h6 {
                 MY ITINERARIES SECTION
 ==================================================== */
 
-#my-itineraries h1 {
+.my-itineraries h1 {
     margin-top: 120px;
     color: #4b605c;
 }
 
-#my-itineraries h1:nth-child(2) a {
+.my-itineraries h1:nth-child(2) a {
     font-size: 16px;
     color: #425451;
 }
-#my-itineraries h1:nth-child(2) a:hover {
+
+.my-itineraries h1:nth-child(2) a:hover {
     color: #1bbca3;
     text-decoration: none;
 }
 
-#my-itineraries .card {
+.my-itineraries h5 a {
+    color: #425451;
+}
+
+.my-itineraries h5 a:hover {
+    text-decoration: none;
+}
+
+.my-itineraries .card {
     margin-top: 30px
 }
+
+.my-itineraries .card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.my-itineraries .card-title {
+    color: #4b605c;
+}
+
+.my-itineraries .card-title:hover {
+    color: #1bbca3;
+    text-decoration: none;
+}
+
+.my-itineraries a {
+    color: #7c9995;
+}
+
+.my-itineraries a:hover {
+    color: #a7bbb8;
+}
+
+/* ====================================================
+            INDIVIDUAL ITINERARY SECTION
+==================================================== */
+
+.one-itinerary h1 {
+    margin-top: 120px;
+    color: #4b605c;
+}
+
+.one-itinerary h2 {
+    color: #58716d;
+    font-family: "Poppins", sans-serif;
+}
+
+.one-itinerary #edit a,
+.one-itinerary #delete a {
+    font-size: 16px;
+    color: #425451;
+}
+
+.one-itinerary #edit a:hover,
+.one-itinerary #delete a:hover {
+    color: #1bbca3;
+    text-decoration: none;
+}
+
+.one-itinerary .content h3,
+.one-itinerary .content p {
+    margin: auto
+}
+
+.one-itinerary .content {
+    margin: auto
+}
+
+.one-itinerary .content h3 {
+    font-weight: 500;
+    font-size: 24px;
+    color: #58716d;
+    font-family: "Poppins", sans-serif;
+}
+

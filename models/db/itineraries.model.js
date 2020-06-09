@@ -9,23 +9,20 @@ const itinerarySchema = new Schema ({
     },
     dateFrom: {
         type: Date,
-        required: false
+        required: [true, 'Date From is required']
     },
     dateTo: {
         type: Date,
-        required: false
+        required: [true, 'Date To is required']
     },
     description: {
         type: String,
-        required: false
     },
     plans: {
         type: String,
-        required: false
     },
     image: {
         type: String,
-        required: false
     }
 })
 
