@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+
+    <%- include('./partials/body.ejs') %>
+
+    <!-- ==================== New Form Section ==================== -->
+    <section id="new-form">
+        <div class="container">
+            <h2>Create a new itinerary</h2>
+            <form action="/my-itinerary" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="destination">Destination:</label>
+                        <%- include('./partials/countries-dropdown.ejs') %>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="dateFrom">Date From:</label>
+                        <input type="date" class="form-control" id="dateFrom" name="dateFrom">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="dateTo">Date To:</label>
+                        <input type="date" class="form-control" id="dateTo" name="dateTo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" id="description" name="description" rows="5" placeholder="Is the country warm or cold? ...."></textarea>       
+                </div>
+                <div class="form-group">
+                    <label for="plans">Plans:</label>
+                    <textarea class="form-control" id="plans" name="plans" rows="12" placeholder="What are your plans?"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="image">Image:</label>
+                        <input type="text" class="form-control" id="image" placeholder="Insert any lovely image url of that country!">
+                    </div>             
+                </div>
+                <button type="submit" class="btn btn-info mt-2">Submit</button>
+            </form>
+        </div>
+    </section><!-- End New Form Section -->
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+
+    <%- include('./partials/body.ejs') %>
+    <!-- ==================== ALL ITINERARIES SECTION ==================== -->
+    <section id="my-itineraries">
+
+        <div class="container">
+            <div class="d-flex justify-content-between border-bottom pb-2">
+                <h1>My Itineraries</h1>
+                <h1 class="d-flex align-items-end"><a href="/new">Create New +</a></h1>
+            </div>
+        </div>
+
+        <div class="container d-flex justify-content-around flex-wrap">
+            <div class="card d-flex" style="width: 18rem;">
+                <div class="card-body text-center " style="width: 18rem;">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="card-link">Edit</a>
+                    <a href="#" class="card-link">Delete</a>
+                </div>
+            </div>ß
+        </div>
+
+    </section>
+
+    <!-- <% itinerary.forEach(data => { %>
+        <h1 class="mt-5"><%= data.destination %></h1>
+        <h1><%= data.description %></h1>
+        <h1><%= data.plans %></h1>
+        <h1><%= dateFormatter(data.dateFrom) %></h1>
+        <h1><%= dateFormatter(data.dateTo) %></h1>
+    <% }) %> -->
+
+</body>
+
+</html>
