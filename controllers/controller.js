@@ -24,7 +24,8 @@ module.exports = {
             const result = await newItinerary.save();
             res.redirect('/my-itineraries');
         } catch (err) {
-            res.send(err.message)    
+            res.send(err.message);
+            res.redirect('/my-itineraries');    
         }
     },
     async showItinerary(req, res) {
