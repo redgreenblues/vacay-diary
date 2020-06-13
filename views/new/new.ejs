@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <%- include('./partials/head.ejs') %>
+    <%- include('../partials/head.ejs') %>
 </head>
 
 <body>
 
-    <%- include('./partials/body.ejs') %>
+    <%- include('../partials/body.ejs') %>
 
     <!-- ==================== New Form Section ==================== -->
     <section id="new-form">
@@ -35,12 +35,6 @@
                 <div class="form-group">
                     <label for="plans">Plans:</label>
                     <textarea class="form-control" id="plans" name="plans" rows="12" placeholder="What are your plans?"></textarea>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="image">Image:</label>
-                        <input type="text" class="form-control" id="image" placeholder="Insert any lovely image url of that country!">
-                    </div>             
                 </div>
                 <button type="submit" class="btn btn-info mt-2">Submit</button>
             </form>

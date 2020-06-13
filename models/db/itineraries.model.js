@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const itinerarySchema = new Schema ({
     destination: {
@@ -18,9 +18,6 @@ const itinerarySchema = new Schema ({
         type: String,
     },
     plans: {
-        type: String,
-    },
-    image: {
         type: String,
     }
 })
