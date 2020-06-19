@@ -7,51 +7,29 @@
 
 <body>
 
-    <!-- ==================== NAV MENU ==================== -->
-    <header id="header" class="fixed-top header-transparent shadow-sm bg-white rounded">
-        <div class="container">
-            <div class="logo float-left">
-                <h1 class="text-light"><a href="/"><span>Vacay Diary</span></a></h1>
-            </div>
-
-            <nav class="nav-menu float-right d-none d-lg-block">
-                <ul>
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/login">Log in</a></li>
-                </ul>
-            </nav>
-
-        </div>
-    </header><!-- End Nav MENU -->
+    <%- include('./partials/nav-menu/home-nav.ejs') %>
 
     <!-- ==================== LOGIN SECTION ==================== -->
     <section class="login">
         <div class="container">
-            <form class="text-center border p-5 col-8 mx-auto" action="#!">
+            <form class="text-center border p-5 col-8 mx-auto" action="/login" method="POST">
 
                 <p class="h4 mb-4">Sign in</p>
 
                 <%- include('./partials/messages/errors.ejs') %>
 
                 <!-- Email -->
-                <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+                <input type="email" id="email" name="email" class="form-control mb-4" placeholder="E-mail">
 
                 <!-- Password -->
-                <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+                <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Password">
 
-                <div class="d-flex justify-content-around">
-                    <div>
-                        <!-- Remember me -->
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-                        </div>
-                    </div>
-                    <div>
+                <!-- <div class="d-flex justify-content-around">
+                    <div> -->
                         <!-- Forgot password -->
-                        <a href="">Forgot password?</a>
+                        <!-- <a href="">Forgot password?</a>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Sign in button -->
                 <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>

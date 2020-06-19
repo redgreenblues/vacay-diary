@@ -4,5 +4,5 @@ module.exports = {
     async findOne (email) {
         const result = await User.findOne({ email: email });
         return result;
-    },
+    }
 }

@@ -2,6 +2,7 @@ const User = require('../models/schema/users.model');
 const UserRepository = require('../repositories/userRepository');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 module.exports = {
     register(req, res) {
@@ -50,12 +51,23 @@ module.exports = {
                             await newUser.save();
                             req.flash('success_msg', 'Registration successful. You are able to login now')
                             res.redirect('/login');
-                        } catch (err) {
+                        } catch (err) { 
                             res.send(err.message);
                         }
                     })
                 }
             })
         }
+    },
+    loginHandler(req, res, next) {
+        passport.authenticate('local', {
+            successRedirect: '/app',
+            failureRedirect: '/login',
+            failureFlash: true
+        })(req, res, next);
+    },
+    logout(req, res) {
+        req.logout();
+        res.redirect('/');
     }
 }

@@ -11,10 +11,10 @@ module.exports = {
         res.render('home.ejs')
     },
     renderAppHome(req, res) {
-        res.render('app-home.ejs');
+        res.render('app-home.ejs', { username: req.user.firstName });
     },
     newForm(req, res) {
-        res.render('new.ejs');
+        res.render('new.ejs', { username: req.user.firstName });
     },
     async index(req, res) {
         try {
@@ -22,6 +22,7 @@ module.exports = {
             const newDateFrom = dateFormatter(itinerary.dateFrom);
             const newDateTo = dateFormatter(itinerary.dateTo);
             res.render('index.ejs', {
+                username: req.user.firstName,
                 itinerary,
                 newDateFrom,
                 newDateTo

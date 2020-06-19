@@ -7,13 +7,13 @@
 
 <body>
 
-    <%- include('../partials/nav-menu.ejs') %>
+    <%- include('../partials/nav-menu/app-nav.ejs') %>
 
     <!-- ==================== New Form Section ==================== -->
     <section id="new-form" class="new-form">
         <div class="container">
             <h2>Create a new itinerary</h2>
-            <form action="/my-itineraries" method="POST">
+            <form action="/app/my-itineraries" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="destination">Destination:</label>

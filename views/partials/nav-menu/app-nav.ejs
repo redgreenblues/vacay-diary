@@ -1,0 +1,23 @@
+<!-- ==================== NAV MENU ==================== -->
+<header id="header" class="fixed-top header-transparent shadow-sm bg-white rounded">
+    <div class="container">
+        <div class="logo float-left">
+            <h1 class="text-light"><a href="/app"><span>Vacay Diary</span></a></h1>
+        </div>
+
+        <nav class="nav-menu float-right d-none d-lg-block">
+            <ul>
+                <li class="active"><a href="/app">Home</a></li>
+                <!-- <li><a href="#about">About Us</a></li> -->
+                <li><a href="/app/my-itineraries">My Itineraries</a></li>
+                <li><a href="/app/new">Create Itinerary</a></li>
+                <li class="drop-down"><a href=""><%= username.charAt(0).toUpperCase() + username.slice(1) %></a>
+                    <ul>
+                      <li><a href="/logout">Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</header><!-- End Nav MENU -->
