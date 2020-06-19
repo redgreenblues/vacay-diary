@@ -1,19 +1,30 @@
-const itineraries = require('../models/db/itineraries.model');
-const users = require('../models/db/users.model');
+const ItineraryRepository = require('../repositories/itineraryRepository');
+const Itineraries = require('../models/schema/itineraries.model');
 const moment = require('moment');
 
+const dateFormatter = date => {
+    return moment(date).format('ddd, MMM do YYYY');
+};
+
 module.exports = {
-    landing(req, res) {
-        res.render('landing.ejs')
+    renderHome(req, res) {
+        res.render('home.ejs')
     },
-    newItinerary(req, res) {
+    renderAppHome(req, res) {
+        res.render('app-home.ejs');
+    },
+    newForm(req, res) {
         res.render('new.ejs');
     },
     async index(req, res) {
         try {
-            const itinerary = await itineraries.find({});
+            const itinerary = await ItineraryRepository.find();
+            const newDateFrom = dateFormatter(itinerary.dateFrom);
+            const newDateTo = dateFormatter(itinerary.dateTo);
             res.render('index.ejs', {
-                itinerary
+                itinerary,
+                newDateFrom,
+                newDateTo
             })
         } catch (err) {
             res.send(err.message)
@@ -22,28 +33,25 @@ module.exports = {
     async create(req, res) {
         try {
             const { destination, dateFrom, dateTo, description, plans } = await req.body;
-            const newItinerary = new itineraries({ destination, dateFrom, dateTo, description, plans });        
+            const newItinerary = new Itineraries({ _id: mongoose.Types.ObjectId(), destination, dateFrom, dateTo, description, plans });
             const result = await newItinerary.save();
             res.redirect('/my-itineraries');
         } catch (err) {
             res.send(err.message);
-            res.redirect('/my-itineraries');    
         }
     },
-    async showItinerary(req, res) {
+    async getOneById(req, res) {
         try {
-            const itinerary = await itineraries.findOne({ destination: req.params.destination });
-            const newDateFrom = moment(itinerary.dateFrom).format('ddd, MMM Do YYYY');
-            const newDateTo = moment(itinerary.dateTo).format('ddd, MMM Do YYYY');
-            res.render('show-itinerary.ejs', { itinerary, newDateFrom, newDateTo })
+            const itinerary = await ItineraryRepository.findById(req.params.id);
+            const newDateFrom = dateFormatter(itinerary.dateFrom);
+            const newDateTo = dateFormatter(itinerary.dateTo);
+            res.render('show-itinerary.ejs', {
+                itinerary,
+                newDateFrom,
+                newDateTo
+            })
         } catch (err) {
             res.send(err.message)
         }
-    },
-    register(req, res) {
-        res.render('registration.ejs')
-    },
-    login(req, res) {
-        res.render('login.ejs')
     },
 }

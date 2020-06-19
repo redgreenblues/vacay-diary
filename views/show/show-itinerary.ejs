@@ -8,17 +8,13 @@
 <body>
 
     <%- include('../partials/body.ejs') %>
-<!-- 
-    <% const dateFormatter = date => { %>
-        <% let newDate = new Date(date); %>
-        <% return newDate.toDateString(); %>
-    <% }; %> -->
+
     <!-- ==================== INDIVIDUAL ITINERARY SECTION ==================== -->
     <section id="one-itinerary" class="one-itinerary">
 
         <div class="container">
             <div class="d-flex justify-content-between border-bottom pb-2">
-                <h1><%= itinerary.destination %></h1>
+                <h2><span><p class="d-inline"><a href="/my-itineraries">My Itineraries</a>&nbsp;&nbsp; / &nbsp;&nbsp;</p></span><%= itinerary.destination %></h2>
                 <div class="d-flex justify-content-around" style="width: 140px">
                     <h1 class="d-flex align-items-end" id="edit"><a href="#">Edit</a></h1>
                     <h1 class="d-flex align-items-end" id="delete"><a href="#">Delete</a></h1>
@@ -31,7 +27,7 @@
                     <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                     <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                   </svg></h5>
-                <h4 class="px-4"><%= newDateFrom %> - <%= newDateTo %></h4>
+                <p class="px-4" style="color: black;"><%= newDateFrom %> - <%= newDateTo %></p>
             </div>
 
             <div class="mt-4 shadow p-3 mb-4 bg-white rounded content">              

@@ -6,7 +6,22 @@
 </head>
 
 <body>
-    <%- include('./partials/body.ejs') %>
+    <!-- ==================== NAV MENU ==================== -->
+    <header id="header" class="fixed-top header-transparent shadow-sm bg-white rounded">
+        <div class="container">
+            <div class="logo float-left">
+                <h1 class="text-light"><a href="/"><span>Vacay Diary</span></a></h1>
+            </div>
+
+            <nav class="nav-menu float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/login">Log in</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header><!-- End Nav MENU -->
 
     <!-- ==================== REGISTRATION SECTION ==================== -->
     <section class="register">
@@ -15,6 +30,8 @@
             <form class="text-center border p-5 col-8 mx-auto" action="/register" method="POST">
 
                 <p class="h4 mb-4">Registration</p>
+
+                <%- include('./partials/messages/errors.ejs') %>
 
                 <div class="form-row mb-4">
                     <div class="col">
@@ -35,9 +52,6 @@
                 <!-- Password -->
                 <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Password"
                     aria-describedby="defaultRegisterFormPasswordHelpBlock" value="<%= typeof password != 'undefined' ? password : '' %>">
-                <!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                    At least 8 characters and 1 digit
-                </small> -->
 
                 <!-- Confirm Password -->
                 <input type="password" id="password2" name="password2" class="form-control" placeholder="Confirm Password"
@@ -45,11 +59,6 @@
 
                 <!-- Sign up button -->
                 <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
-
-                <!-- Terms of service -->
-                <p>By clicking
-                    <em>Register</em> you agree to our
-                    <a href="" target="_blank">terms of service</a>
 
                 <!-- Login  -->
                 <p>Already have an account? <a href="/login">Log in</a></p>

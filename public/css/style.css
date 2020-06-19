@@ -48,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo h1 {
-    font-size: 28px;
+    font-size: 1.8em;
     margin: 0;
     padding: 4px 0;
     line-height: 1;
@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #425451;
     padding: 10px 15px;
     transition: 0.3s;
-    font-size: 14px;
+    font-size: 0.9em;
     font-family: "Open Sans", sans-serif;
 }
 
@@ -119,19 +119,19 @@ h1, h2, h3, h4, h5, h6 {
 #hero h5 {
     color: #fff;
     margin-bottom: 30px;
-    font-size: 5vh;
+    font-size: 4em;
     font-weight: 700;
 }
 
 #hero p {
-    font-size: 2vh;
+    font-size: 1.5em;
     color: #fff;
 }
 
 #hero .btn-get-started {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.9em;
     letter-spacing: 1px;
     display: inline-block;
     padding: 12px 32px;
@@ -174,7 +174,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-title h2 {
-    font-size: 32px;
+    font-size: 2em;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -189,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .about .content h3 {
     font-weight: 500;
-    font-size: 24px;
+    font-size: 1.5em;
     color: #58716d;
     font-family: "Poppins", sans-serif;
 }
@@ -205,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
 .about .btn-get-started {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.9em;
     letter-spacing: 1px;
     display: inline-block;
     padding: 12px 32px;
@@ -229,12 +229,12 @@ h1, h2, h3, h4, h5, h6 {
                     NEW FORM SECTION
 ==================================================== */
 
-#new-form h2 {
+.new-form h2 {
     margin-top: 120px;
     color: #4b605c;
 }
 
-#new-form form {
+.new-form form {
     margin-top: 40px;
 }
 
@@ -242,14 +242,24 @@ h1, h2, h3, h4, h5, h6 {
                 MY ITINERARIES SECTION
 ==================================================== */
 
-.my-itineraries h1 {
+.my-itineraries {
+    background: url('/img/my-itineraries/background-1.jpg');
+    background-size: cover;
+    height: 100vh;
+}
+
+.my-itineraries h2 {
     margin-top: 120px;
-    color: #4b605c;
+    color: #fff;
+}
+
+.my-itineraries h6 {
+    color: #fff;
 }
 
 .my-itineraries h1:nth-child(2) a {
-    font-size: 16px;
-    color: #425451;
+    font-size: 0.4em;
+    color: #fff;
 }
 
 .my-itineraries h1:nth-child(2) a:hover {
@@ -258,18 +268,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .my-itineraries h5 a {
-    color: #425451;
+    color: #fff;
 }
 
 .my-itineraries h5 a:hover {
-    text-decoration: none;
+    color: #1bbca3;
 }
 
 .my-itineraries .card {
-    margin-top: 30px
+    margin-top: 30px;
+    background-color: rgba(21, 27, 26, 0.4);
+    transition: transform .2s;
+}
+
+.my-itineraries .card:hover {
+    transform: scale(1.1);
 }
 
 .my-itineraries .card-text {
+    color: #CCD1D1;
     margin: auto;
     white-space: nowrap;
     overflow: hidden;
@@ -277,17 +294,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 230px;
 }
 
-.my-itineraries .card-title {
-    color: #4b605c;
-}
-
-.my-itineraries .card-title:hover {
-    color: #1bbca3;
-    text-decoration: none;
-}
-
 .my-itineraries a {
-    color: #7c9995;
+    color: #fff;
 }
 
 .my-itineraries a:hover {
@@ -298,9 +306,21 @@ h1, h2, h3, h4, h5, h6 {
             INDIVIDUAL ITINERARY SECTION
 ==================================================== */
 
-.one-itinerary h1 {
+.one-itinerary h2 {
     margin-top: 120px;
     color: #4b605c;
+}
+
+.one-itinerary h2 span {
+    font-size: 0.5em;
+}
+
+.one-itinerary h2 span a {
+    color: #4b605c;
+}
+
+.one-itinerary h2 span a:hover {
+    color: #1bbca3;
 }
 
 .one-itinerary h5 {
@@ -314,20 +334,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .one-itinerary #edit a, .one-itinerary #delete a {
-    font-size: 16px;
+    font-size: 0.4em;
     color: #425451;
 }
 
 .one-itinerary #edit a:hover, .one-itinerary #delete a:hover {
     color: #1bbca3;
-    text-decoration: none;
-}
-
-.one-itinerary .content h4 {
-    font-weight: 500;
-    font-size: 20px;
-    color: black;
-    font-family: "Poppins", sans-serif;
 }
 
 /* ====================================================

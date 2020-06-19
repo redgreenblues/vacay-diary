@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+
+    <!-- ==================== NAV MENU ==================== -->
+    <header id="header" class="fixed-top header-transparent shadow-sm bg-white rounded">
+        <div class="container">
+            <div class="logo float-left">
+                <h1 class="text-light"><a href="/"><span>Vacay Diary</span></a></h1>
+            </div>
+
+            <nav class="nav-menu float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/login">Log in</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header><!-- End Nav MENU -->
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="hero">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/img/sliders/slide-1.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Welcome to Vacay Diary</h5>
+                        <p>The easiest way to plan your holiday itinerary.</p>
+                        <a href="/register" class="btn-get-started animated fadeInUp scrollto">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Hero Section -->
+
+    <!-- ==================== About Us Section ==================== -->
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="section-title">
+                <h2 class="text-center">About Us</h2>
+                <p>This is the perfect place to store all your travel itineraries. It is simple and easy to use. No more
+                    headaches!</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="/img/about-us/about-1.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3><strong>Travel with no worries!</strong></h3>
+                    <p class="font-italic">
+                        Plan and manage your travel itineraries in Vacay Diary.
+                    </p>
+                    <a href="/register" class="btn-get-started animated fadeInUp scrollto">Get Started</a>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Us Section -->
+
+    <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>
