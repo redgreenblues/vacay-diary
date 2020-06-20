@@ -7,7 +7,7 @@
 
 <body>
 
-    <%- include('../partials/body.ejs') %>
+    <%- include('../partials/nav-menu/app-nav.ejs') %>
 
     <!-- ==================== INDIVIDUAL ITINERARY SECTION ==================== -->
     <section id="one-itinerary" class="one-itinerary">
@@ -27,7 +27,7 @@
                     <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                     <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                   </svg></h5>
-                <p class="px-4" style="color: black;"><%= newDateFrom %> - <%= newDateTo %></p>
+                <p class="px-4" style="color: black;"><%= moment(itinerary.dateFrom).format('ddd, MMM Do YYYY') %> - <%= moment(itinerary.dateTo).format('ddd, MMM Do YYYY') %></p>
             </div>
 
             <div class="mt-4 shadow p-3 mb-4 bg-white rounded content">              

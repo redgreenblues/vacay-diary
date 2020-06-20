@@ -5,9 +5,13 @@ const PORT = process.env.PORT || 3000;
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const methodOverride = require('method-override');
 
 // Set multiple views directory
-app.set('views', [__dirname + '/views', __dirname + '/views/index', __dirname + '/views/new', __dirname + '/views/show', __dirname + '/views/app']);
+app.set('views', [__dirname + '/views', __dirname + '/views/index', __dirname + '/views/new', __dirname + '/views/show', __dirname + '/views/app', __dirname + '/views/edit']);
+
+// Middleware to use PUT and DELETE
+app.use(methodOverride('_method'));
 
 // Static middleware
 app.use(express.static('public'));

@@ -19,16 +19,19 @@ module.exports = app => {
 
     // New route
     app.get('/app/new', ensureAuthenticated, appController.newForm);
+    
+    // Update(Edit) route
+    app.get('/app/my-itineraries/edit/:id', ensureAuthenticated, appController.renderEdit);
 
     // Show route
     app.get('/app/my-itineraries/:id', ensureAuthenticated, appController.getOneById);
 
-    // Edit route
-    app.get('/app/my-itineraries/:destination');
-
     /* ======================== Action Routes ===================== */
     // Post route
     app.post('/app/my-itineraries', ensureAuthenticated, appController.create);
+
+    // Put route
+    app.put('/app/my-itineraries/edit/:id', ensureAuthenticated, appController.update)
 
     /* ===============================================================
                                 USER ROUTES

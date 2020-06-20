@@ -1,10 +1,7 @@
 const ItineraryRepository = require('../repositories/itineraryRepository');
 const Itineraries = require('../models/schema/itineraries.model');
 const moment = require('moment');
-
-const dateFormatter = date => {
-    return moment(date).format('ddd, MMM do YYYY');
-};
+const mongoose = require('mongoose');
 
 module.exports = {
     renderHome(req, res) {
@@ -18,14 +15,11 @@ module.exports = {
     },
     async index(req, res) {
         try {
-            const itinerary = await ItineraryRepository.find();
-            const newDateFrom = dateFormatter(itinerary.dateFrom);
-            const newDateTo = dateFormatter(itinerary.dateTo);
+            const itinerary = await ItineraryRepository.find(req.user.email);
             res.render('index.ejs', {
                 username: req.user.firstName,
                 itinerary,
-                newDateFrom,
-                newDateTo
+                moment: moment
             })
         } catch (err) {
             res.send(err.message)
@@ -34,9 +28,9 @@ module.exports = {
     async create(req, res) {
         try {
             const { destination, dateFrom, dateTo, description, plans } = await req.body;
-            const newItinerary = new Itineraries({ _id: mongoose.Types.ObjectId(), destination, dateFrom, dateTo, description, plans });
+            const newItinerary = new Itineraries({ _id: mongoose.Types.ObjectId(), email: req.user.email, destination, dateFrom, dateTo, description, plans });
             const result = await newItinerary.save();
-            res.redirect('/my-itineraries');
+            res.redirect('/app/my-itineraries');
         } catch (err) {
             res.send(err.message);
         }
@@ -44,15 +38,40 @@ module.exports = {
     async getOneById(req, res) {
         try {
             const itinerary = await ItineraryRepository.findById(req.params.id);
-            const newDateFrom = dateFormatter(itinerary.dateFrom);
-            const newDateTo = dateFormatter(itinerary.dateTo);
             res.render('show-itinerary.ejs', {
+                username: req.user.firstName,
                 itinerary,
-                newDateFrom,
-                newDateTo
+                moment: moment
             })
         } catch (err) {
-            res.send(err.message)
+            res.send(err.message);
         }
     },
+    async renderEdit(req, res) {
+        try {
+            const itinerary = await ItineraryRepository.findById(req.params.id);
+            res.render('edit.ejs', {
+                username: req.user.firstName,
+                itinerary,
+                moment: moment
+            })
+        } catch (err) {
+            res.send(err.message);
+        }
+    },
+    async update(req, res) {
+        try {
+            const itinerary = {
+                destination: req.body.destination,
+                dateFrom: req.body.dateFrom,
+                dateTo: req.body.dateTo,
+                description: req.body.description,
+                plans: req.body.plans
+            };
+            const updateItinerary = await ItineraryRepository.findByIdAndUpdate(req.params.id, itinerary);
+            res.redirect('/app/my-itineraries');
+        } catch (err) {
+            res.send(err.message);
+        }
+    }
 }
