@@ -14,15 +14,23 @@ module.exports = {
     async registerHandler(req, res) {
         const { firstName, lastName, email, password, password2 } = await req.body;
         let errors = [];
+        let errors_two = [];
 
         // Validation
-        if (!firstName || !lastName || !email || !password || !password2) errors.push({ msg: 'Please fill in all the fields' });
-        if (password !== password2) errors.push({ msg: 'Passwords do not match' });
-        if (password.length < 8 && password.length > 0) errors.push({ msg: 'Password should be at least 8 characters' });
+        // if (!firstName || !lastName || !email || !password || !password2) errors.push({ msg: 'Please fill in all the fields' });
+        if(!firstName) errors.push({ firstNameMsg: 'First name cannot be empty' });
+        if(!lastName) errors.push({ lastNameMsg: 'Last name cannot be empty' });
+        if(!email) errors.push({ emailMsg: 'Email cannot be empty' });
+        if(!password) errors.push({ passwordMsg: 'Password cannot be empty' });
+        if(!password2) errors.push({ password2Msg: 'Please confirm your password' });
+
+        if (password !== password2) errors_two.push({ msg: 'Passwords do not match' });
+        if (password.length < 8 && password.length > 0) errors_two.push({ msg: 'Password should be at least 8 characters' });
 
         if (errors.length > 0) {
             res.render('registration.ejs', {
                 errors,
+                errors_two,
                 firstName,
                 lastName,
                 email,
@@ -34,9 +42,10 @@ module.exports = {
             const result = UserRepository.findOne(email); // Find if email exists in database
             result.then(user => {
                 if (user) { // If user exists in database
-                    errors.push({ msg: 'Email is already registered' });
+                    errors_two.push({ msg: 'Email is already registered' });
                     res.render('registration.ejs', {
                         errors,
+                        errors_two,
                         firstName,
                         lastName,
                         email,

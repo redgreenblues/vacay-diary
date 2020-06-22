@@ -68,7 +68,15 @@ module.exports = {
                 description: req.body.description,
                 plans: req.body.plans
             };
-            const updateItinerary = await ItineraryRepository.findByIdAndUpdate(req.params.id, itinerary);
+            await ItineraryRepository.findByIdAndUpdate(req.params.id, itinerary);
+            res.redirect('/app/my-itineraries');
+        } catch (err) {
+            res.send(err.message);
+        }
+    },
+    async delete(req, res) {
+        try {
+            await ItineraryRepository.findByIdAndDelete(req.params.id);
             res.redirect('/app/my-itineraries');
         } catch (err) {
             res.send(err.message);

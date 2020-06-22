@@ -23,12 +23,13 @@
                 <div class="card-body text-center" style="width: 21rem;">
                     <h5 class="card-title"><a
                             href="/app/my-itineraries/<%= itinerary._id %>"><%= itinerary.destination %></a></h5>
-                    <h6 class="card-subtitle mb-2 pb-1"><%= moment(itinerary.dateFrom).format('ddd, MMM Do YYYY') %> - <%= moment(itinerary.dateTo).format('ddd, MMM Do YYYY') %></h6>
+                    <h6 class="card-subtitle mb-2 pb-1"><%= moment(itinerary.dateFrom).format('ddd, MMM Do YYYY') %> -
+                        <%= moment(itinerary.dateTo).format('ddd, MMM Do YYYY') %></h6>
                     <p class="card-text mb-2"><%= itinerary.description %></p>
 
                 </div>
                 <div class="card-icons d-flex justify-content-center align-items-end pb-4">
-                    <a href="/app/my-itineraries/edit/<%= itinerary._id %>" class="card-link"><svg
+                    <a href="/app/my-itineraries/edit/<%= itinerary._id %>" class="card-link edit"><svg
                             class="bi bi-pencil-square" width="1.5em" height="1.5em" viewBox="0 0 16 16"
                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -36,8 +37,9 @@
                             <path fill-rule="evenodd"
                                 d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                         </svg></a>
-                    <a href="#" class="card-link"><svg class="bi bi-trash" width="1.5em" height="1.5em"
-                            viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#exampleModal"><svg
+                            class="bi bi-trash" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                             <path fill-rule="evenodd"
@@ -45,9 +47,11 @@
                         </svg></a>
                 </div>
             </div>
+
+            <%- include('../partials/modal/delete.ejs') %>
+            
             <% }) %>
         </div>
-
     </section>
 
 </body>

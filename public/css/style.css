@@ -186,6 +186,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .about {
     margin-top: 50px;
+    margin-bottom: 70px;
 }
 
 .section-title {
@@ -398,5 +399,60 @@ h1, h2, h3, h4, h5, h6 {
 ==================================================== */
 
 .register {
-    margin-top: 150px;
+    margin-top: 200px;
+}
+
+.register .container {
+    width: 80vw;
+    min-height: 25vw;
+    padding: 0;
+    display: flex;
+}
+
+.register .sidebar {
+    width: 50%;
+    background: url('/img/registration/registration-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.register .caption {
+    width: 100%;
+    margin: auto;
+    color: #fff;
+    background: rgba(21, 27, 26, 0.2);
+    padding: 20px;
+}
+
+.register .registration {
+    width: 50%;
+    background: #f9f9f9;
+    border-radius: 0 10px 10px 0;
+    padding: 50px;
+}
+
+.register .registration h3 {
+    color: #4b605c;
+    margin-bottom: 30px;
+}
+
+.register label {
+    color: #4b605c;
+    font-family: "Poppins", sans-serif;
+}
+
+.register .registerInput {
+    margin-bottom: 5px;
+}
+
+.register small {
+    color: #E74C3C;
+}
+
+.register .form-error {
+    border: 1px solid #E74C3C;
+}
+
+.register p {
+    font-family: "Poppins", sans-serif;
 }

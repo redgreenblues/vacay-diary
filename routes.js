@@ -31,7 +31,10 @@ module.exports = app => {
     app.post('/app/my-itineraries', ensureAuthenticated, appController.create);
 
     // Put route
-    app.put('/app/my-itineraries/edit/:id', ensureAuthenticated, appController.update)
+    app.put('/app/my-itineraries/edit/:id', ensureAuthenticated, appController.update);
+
+    // Delete route
+    app.delete('/app/my-itineraries/:id', ensureAuthenticated, appController.delete);
 
     /* ===============================================================
                                 USER ROUTES
