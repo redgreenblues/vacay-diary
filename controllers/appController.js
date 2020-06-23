@@ -2,6 +2,7 @@ const ItineraryRepository = require('../repositories/itineraryRepository');
 const Itineraries = require('../models/schema/itineraries.model');
 const moment = require('moment');
 const mongoose = require('mongoose');
+const fetch = require('node-fetch');
 
 module.exports = {
     renderHome(req, res) {
@@ -10,16 +11,24 @@ module.exports = {
     renderAppHome(req, res) {
         res.render('app-home.ejs', { username: req.user.firstName });
     },
-    newForm(req, res) {
-        res.render('new.ejs', { username: req.user.firstName });
+    async newForm(req, res) {
+        const response = await fetch('https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json');
+        let countries = await response.json();
+        res.render('new.ejs', { 
+            username: req.user.firstName,
+            countries
+        });
     },
     async index(req, res) {
         try {
+            const response = await fetch('https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json');
+            let countries = await response.json();
             const itinerary = await ItineraryRepository.find(req.user.email);
             res.render('index.ejs', {
                 username: req.user.firstName,
                 itinerary,
-                moment: moment
+                moment: moment,
+                countries
             })
         } catch (err) {
             res.send(err.message)
@@ -49,11 +58,14 @@ module.exports = {
     },
     async renderEdit(req, res) {
         try {
+            const response = await fetch('https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json');
+            let countries = await response.json();
             const itinerary = await ItineraryRepository.findById(req.params.id);
             res.render('edit.ejs', {
                 username: req.user.firstName,
                 itinerary,
-                moment: moment
+                moment: moment,
+                countries
             })
         } catch (err) {
             res.send(err.message);

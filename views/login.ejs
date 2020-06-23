@@ -11,30 +11,53 @@
 
     <!-- ==================== LOGIN SECTION ==================== -->
     <section class="login">
-        <div class="container">
-            <form class="text-center border p-5 col-8 mx-auto" action="/login" method="POST">
+        <div class="container shadow mb-5 bg-white rounded">
 
-                <p class="h4 mb-4">Sign in</p>
+            <!-- Sidebar image -->
+            <div class="sidebar"></div>
 
-                <%- include('./partials/messages/errors.ejs') %>
+            <!-- Login div -->
+            <div class="loginBar">
+                <h3>Log in</h3>
+                <%- include('./partials/messages/login-error.ejs') %>
+                <form class="login-form" action="/login" method="POST">
 
-                <!-- Email -->
-                <input type="email" id="email" name="email" class="form-control mb-4" placeholder="E-mail">
+                    <!-- Email -->
+                    <div class="mb-2">                      
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control loginInput">
+                        <% if(typeof errors != 'undefined') { %>
+                            <% errors.forEach(error => { %>
+                                <small><%= error.emailMsg %></small>
+                            <% }) %>
+                        <% } %>
+                    </div>
 
-                <!-- Password -->
-                <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Password">
+                    <!-- Password -->
+                    <div class="mb-2">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control loginInput">
+                        <% if(typeof errors != 'undefined') { %>
+                            <% errors.forEach(error => { %>
+                                <small><%= error.passwordMsg %></small>
+                            <% }) %>
+                        <% } %>
+                    </div>
 
-                <!-- Sign in button -->
-                <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                    <!-- Sign in button -->
+                    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
 
-                <!-- Register -->
-                <p>Not a member?
-                    <a href="/register">Register</a>
-                </p>
+                    <!-- Register -->
+                    <p>Not a member?
+                        <a href="/register">Register</a>
+                    </p>
 
-            </form>
+                </form>
+            </div>
+
         </div>
-    </section><!-- End Login Section -->
+
+    </section><!-- End Registration Section -->
 
 </body>
 

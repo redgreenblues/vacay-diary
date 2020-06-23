@@ -264,63 +264,58 @@ h1, h2, h3, h4, h5, h6 {
 ==================================================== */
 
 .my-itineraries {
-    background: url('/img/my-itineraries/background-1.jpg');
+    margin-top: 70px;
+    background: linear-gradient(rgba(66, 84, 81, 0.5), rgba(43, 56, 54, 0.5)), url("/img/my-itineraries/background-1.jpg") fixed center center;
     background-size: cover;
-    height: 100vh;
+    padding: 60px 0;
 }
 
-.my-itineraries h2 {
-    margin-top: 120px;
+.my-itineraries h3 {
+    color: #fff;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.my-itineraries p {
     color: #fff;
 }
 
-.my-itineraries h6 {
-    color: #fff;
-}
-
-.my-itineraries h1:nth-child(2) a {
-    font-size: 0.4em;
-    color: #fff;
-}
-
-.my-itineraries h1:nth-child(2) a:hover {
-    color: #1bbca3;
-    text-decoration: none;
-}
-
-.my-itineraries h5 a {
-    color: #fff;
-}
-
-.my-itineraries h5 a:hover {
-    color: #1bbca3;
-}
-
-.my-itineraries .card {
-    margin-top: 30px;
-    background-color: rgba(21, 27, 26, 0.4);
-    transition: transform .2s;
-}
-
-.my-itineraries .card:hover {
-    transform: scale(1.1);
-}
-
-.my-itineraries .card-text {
-    color: #CCD1D1;
+.main-contents .container-two {
+    max-width: 130vh;
     margin: auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 230px;
 }
 
-.my-itineraries a {
-    color: #fff;
+.main-contents a {
+    color: #4b605c;
 }
 
-.my-itineraries a:hover {
-    color: #a7bbb8;
+.main-contents a:hover {
+    color: #1bbca3;
+}
+
+.main-contents p {
+    font-size: 0.9em;
+}
+
+.main-contents .deleteBtn {
+    border: none;
+    background: none;
+    color: #4b605c;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-contents .deleteBtn:hover {
+    color: #1bbca3;
+}
+
+/* ====================================================
+            SWEET ALERT SECTION
+==================================================== */
+
+.swal-footer {
+    text-align: center;
 }
 
 /* ====================================================
@@ -449,10 +444,59 @@ h1, h2, h3, h4, h5, h6 {
     color: #E74C3C;
 }
 
-.register .form-error {
-    border: 1px solid #E74C3C;
-}
-
-.register p {
+.register p, .register a {
     font-family: "Poppins", sans-serif;
 }
+
+/* ====================================================
+                    LOGIN SECTION
+==================================================== */
+
+.login {
+    margin-top: 200px;
+}
+
+.login .container {
+    width: 80vw;
+    min-height: 18vw;
+    padding: 0;
+    display: flex;
+}
+
+.login .sidebar {
+    width: 50%;
+    background: url('/img/login/login-1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login .loginBar {
+    width: 50%;
+    background: #f9f9f9;
+    border-radius: 0 10px 10px 0;
+    padding: 50px;
+}
+
+.login .loginBar h3 {
+    color: #4b605c;
+    margin-bottom: 30px;
+}
+
+.login label {
+    color: #4b605c;
+    font-family: "Poppins", sans-serif;
+}
+
+.login .loginInput {
+    margin-bottom: 5px;
+}
+
+.login p, .login a {
+    font-family: "Poppins", sans-serif;
+}
+
+.login small {
+    color: #E74C3C;
+}
+

@@ -43,7 +43,9 @@ app.use((req, res, next) => {
     next();
 })
 
-require('./routes')(app);
+// Routes
+require('./routes/app')(app);
+require('./routes/user')(app);
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);

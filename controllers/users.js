@@ -18,11 +18,11 @@ module.exports = {
 
         // Validation
         // if (!firstName || !lastName || !email || !password || !password2) errors.push({ msg: 'Please fill in all the fields' });
-        if(!firstName) errors.push({ firstNameMsg: 'First name cannot be empty' });
-        if(!lastName) errors.push({ lastNameMsg: 'Last name cannot be empty' });
-        if(!email) errors.push({ emailMsg: 'Email cannot be empty' });
-        if(!password) errors.push({ passwordMsg: 'Password cannot be empty' });
-        if(!password2) errors.push({ password2Msg: 'Please confirm your password' });
+        if (!firstName) errors.push({ firstNameMsg: 'First name cannot be empty' });
+        if (!lastName) errors.push({ lastNameMsg: 'Last name cannot be empty' });
+        if (!email) errors.push({ emailMsg: 'Email cannot be empty' });
+        if (!password) errors.push({ passwordMsg: 'Password cannot be empty' });
+        if (!password2) errors.push({ password2Msg: 'Please confirm your password' });
 
         if (password !== password2) errors_two.push({ msg: 'Passwords do not match' });
         if (password.length < 8 && password.length > 0) errors_two.push({ msg: 'Password should be at least 8 characters' });
@@ -68,12 +68,26 @@ module.exports = {
             })
         }
     },
-    loginHandler(req, res, next) {
-        passport.authenticate('local', {
-            successRedirect: '/app',
-            failureRedirect: '/login',
-            failureFlash: true
-        })(req, res, next);
+    async loginHandler(req, res, next) {
+        const { email, password } = await req.body;
+        let errors = [];
+
+        if (!email) errors.push({ emailMsg: 'Email cannot be empty' });
+        if (!password) errors.push({ passwordMsg: 'Password cannot be empty' });
+
+        if (errors.length > 0) {
+            res.render('login.ejs', {
+                errors,
+                email,
+                password
+            })
+        } else {
+            passport.authenticate('local', {
+                successRedirect: '/app',
+                failureRedirect: '/login',
+                failureFlash: true
+            })(req, res, next);
+        }       
     },
     logout(req, res) {
         req.logout();
