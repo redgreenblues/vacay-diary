@@ -3,6 +3,13 @@ const Itineraries = require('../models/schema/itineraries.model');
 const moment = require('moment');
 const mongoose = require('mongoose');
 const fetch = require('node-fetch');
+global.fetch = fetch;
+const countries = require('../models/db/countries.json');
+
+// Unsplash photos
+const API_KEY = 'wF_pL8v5iF3fJLZCsAas0gQ2O1JmWfApr870C9onFZ4';
+const Unsplash = require('unsplash-js').default;
+const unsplash = new Unsplash({ accessKey: API_KEY });
 
 module.exports = {
     renderHome(req, res) {
@@ -12,23 +19,27 @@ module.exports = {
         res.render('app-home.ejs', { username: req.user.firstName });
     },
     async newForm(req, res) {
-        const response = await fetch('https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json');
-        let countries = await response.json();
-        res.render('new.ejs', { 
+        res.render('new.ejs', {
             username: req.user.firstName,
             countries
         });
     },
     async index(req, res) {
-        try {
-            const response = await fetch('https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json');
-            let countries = await response.json();
+        try {          
+            const generateRandomNum = num => {
+                return Math.floor(Math.random() * num)
+            }
+            const response = await unsplash.search.photos('nature', generateRandomNum(50), 30, { orientation: 'landscape' });
+            const result = await response.json();
+            const photos = result.results;
             const itinerary = await ItineraryRepository.find(req.user.email);
             res.render('index.ejs', {
                 username: req.user.firstName,
                 itinerary,
                 moment: moment,
-                countries
+                countries,
+                photos,
+                generateRandomNum
             })
         } catch (err) {
             res.send(err.message)
@@ -50,7 +61,8 @@ module.exports = {
             res.render('show-itinerary.ejs', {
                 username: req.user.firstName,
                 itinerary,
-                moment: moment
+                moment: moment,
+                countries
             })
         } catch (err) {
             res.send(err.message);
@@ -58,8 +70,6 @@ module.exports = {
     },
     async renderEdit(req, res) {
         try {
-            const response = await fetch('https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json');
-            let countries = await response.json();
             const itinerary = await ItineraryRepository.findById(req.params.id);
             res.render('edit.ejs', {
                 username: req.user.firstName,
@@ -89,6 +99,7 @@ module.exports = {
     async delete(req, res) {
         try {
             await ItineraryRepository.findByIdAndDelete(req.params.id);
+            req.flash('success_msg', 'Successful deleted')
             res.redirect('/app/my-itineraries');
         } catch (err) {
             res.send(err.message);

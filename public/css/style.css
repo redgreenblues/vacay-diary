@@ -322,40 +322,104 @@ h1, h2, h3, h4, h5, h6 {
             INDIVIDUAL ITINERARY SECTION
 ==================================================== */
 
-.one-itinerary h2 {
-    margin-top: 120px;
+#one-itineraries-top {
+    margin-top: 70px;
+    background: linear-gradient(rgba(66, 84, 81, 0.5), rgba(43, 56, 54, 0.5)), url("/img/my-itineraries/background-2.jpg") no-repeat fixed center;
+    background-size: cover;
+    padding: 60px 0;
+}
+
+#one-itineraries-top h3 {
+    color: #fff;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+#one-itineraries-top p {
+    color: #fff;
+}
+
+.one-itinerary .country-header {
+    margin-top: 30px;
+    color: #4b605c;
+    font-size: 1.7em;
+}
+
+.one-itinerary .country-header span {
+    font-size: 0.6em;
+}
+
+.one-itinerary .country-header span a {
     color: #4b605c;
 }
 
-.one-itinerary h2 span {
-    font-size: 0.5em;
-}
-
-.one-itinerary h2 span a {
-    color: #4b605c;
-}
-
-.one-itinerary h2 span a:hover {
+.one-itinerary .country-header span a:hover {
     color: #1bbca3;
 }
 
-.one-itinerary h5 {
-    color: #4b605c;
-    font-family: "Poppins", sans-serif;
-    margin-bottom: 20px;
-}
-
-.one-itinerary .content-icon {
-    margin-left: 20px;
-}
-
-.one-itinerary #edit a, .one-itinerary #delete a {
+.one-itinerary #edit a {
     font-size: 0.4em;
     color: #425451;
 }
 
-.one-itinerary #edit a:hover, .one-itinerary #delete a:hover {
+.one-itinerary #edit a:hover {
     color: #1bbca3;
+}
+
+.one-itinerary #delete {
+    font-size: 1em;
+    color: #425451;
+}
+
+.one-itinerary #delete:hover {
+    color: #1bbca3;
+    text-decoration: underline;
+}
+
+.one-itinerary .deleteBtn {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.one-itinerary .row {
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+.one-itinerary .content-item {
+    padding: 40px;
+    border-left: 1px solid #d9e8f4;
+    border-bottom: 1px solid #d9e8f4;
+    margin: -1px;
+}
+
+.one-itinerary .content-item span {
+    display: block;
+    font-weight: 400;
+    color: #9eccf4;
+}
+
+.one-itinerary h4 {
+    font-size: 1.5em;
+    font-weight: 400;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.one-itinerary p {
+    color: #575555;
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .one-itinerary .content-item {
+        padding: 40px 0;
+    }
 }
 
 /* ====================================================
@@ -499,4 +563,3 @@ h1, h2, h3, h4, h5, h6 {
 .login small {
     color: #E74C3C;
 }
-

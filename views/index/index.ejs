@@ -17,28 +17,29 @@
                 <p>All your itineraries stored in one place.</p>
             </div>
         </div>
-
     </section>
+
     <section class="main-contents">
         <div class="container-two mt-4 pr-5">
             <h6 class="text-right mb-0"><a href="/app/new">Create New +</a></h6>
+            <%- include('../partials/messages/delete-doc.ejs') %>
         </div>
+        
         <div class="container-two d-flex justify-content-around flex-wrap text-center">
 
-            <% itinerary.forEach(itinerary => { %>
+            <% itinerary.forEach((itinerary, index) => { %>
             <!-- Card -->
             <div class="card mt-4" style="width: 21rem;">
 
                 <!-- Card image -->
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
-                    alt="Card image cap">
-
+                <img class="card-img-top" src="<%= photos[index].urls.regular %>" alt="Card image cap" style="width: 21rem; height: 13rem">
+                            
                 <!-- Card content -->
                 <div class="card-body" style="width: 21rem;">
                     <% countries.forEach(country => { %>
-                    <% if (country.Name === itinerary.destination) { %>
-                    <img src="https://www.countryflags.io/<%= country.Code %>/shiny/32.png">
-                    <% } %>
+                        <% if (country.Name === itinerary.destination) { %>
+                            <img src="https://www.countryflags.io/<%= country.Code %>/shiny/32.png">
+                        <% } %>
                     <% }) %>
                     <!-- Title -->
                     <h5 class="card-title">
