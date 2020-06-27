@@ -1,15 +1,24 @@
+// Dependencies
 const ItineraryRepository = require('../repositories/itineraryRepository');
-const Itineraries = require('../models/schema/itineraries.model');
-const moment = require('moment');
-const mongoose = require('mongoose');
+const quotes = require('../models/db/quotes.json');
+const { generateRandomNum, renderRandomQuote } = require('../public/js/util');
 const fetch = require('node-fetch');
+const moment = require('moment');
+const ct = require('countries-and-timezones');
+const countries = ct.getAllCountries();
 global.fetch = fetch;
-const countries = require('../models/db/countries.json');
+require('dotenv').config();
+
+// Random quotes
+const randomQuotes = renderRandomQuote(quotes);
 
 // Unsplash photos
-const API_KEY = 'wF_pL8v5iF3fJLZCsAas0gQ2O1JmWfApr870C9onFZ4';
+const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY;
 const Unsplash = require('unsplash-js').default;
-const unsplash = new Unsplash({ accessKey: API_KEY });
+const unsplash = new Unsplash({ accessKey: UNSPLASH_API_KEY });
+
+// Openweather
+const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
 
 module.exports = {
     renderHome(req, res) {
@@ -21,14 +30,12 @@ module.exports = {
     async newForm(req, res) {
         res.render('new.ejs', {
             username: req.user.firstName,
-            countries
+            countries,
+            randomQuotes
         });
     },
     async index(req, res) {
         try {          
-            const generateRandomNum = num => {
-                return Math.floor(Math.random() * num)
-            }
             const response = await unsplash.search.photos('nature', generateRandomNum(50), 30, { orientation: 'landscape' });
             const result = await response.json();
             const photos = result.results;
@@ -36,7 +43,7 @@ module.exports = {
             res.render('index.ejs', {
                 username: req.user.firstName,
                 itinerary,
-                moment: moment,
+                moment,
                 countries,
                 photos,
                 generateRandomNum
@@ -48,21 +55,43 @@ module.exports = {
     async create(req, res) {
         try {
             const { destination, dateFrom, dateTo, description, plans } = await req.body;
-            const newItinerary = new Itineraries({ _id: mongoose.Types.ObjectId(), email: req.user.email, destination, dateFrom, dateTo, description, plans });
-            const result = await newItinerary.save();
-            res.redirect('/app/my-itineraries');
+            let errors = [];
+
+            // Validation
+            if (!dateFrom || !dateTo) errors.push({ dateMsg: 'Date cannot be empty' });
+
+            if (errors.length > 0) {
+                res.render('new.ejs', {
+                    username: req.user.firstName,
+                    countries,
+                    randomQuotes,
+                    errors
+                })
+            } else {
+                const newItinerary = ItineraryRepository.createItinerary(req.user.email, destination, dateFrom, dateTo, description, plans);
+                await newItinerary.save();
+                res.redirect('/app/my-itineraries');
+            }          
         } catch (err) {
             res.send(err.message);
         }
     },
     async getOneById(req, res) {
-        try {
+        try {           
             const itinerary = await ItineraryRepository.findById(req.params.id);
+            // Fetch weather from openweather API
+            const fetch_response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${itinerary.destination}&appid=${OPENWEATHER_API_KEY}`);
+            const response = await fetch_response.json();
+            const weather = await response.weather;
+            const temperature = await response.main;
             res.render('show-itinerary.ejs', {
                 username: req.user.firstName,
                 itinerary,
-                moment: moment,
-                countries
+                moment,
+                countries,
+                ct,
+                weather,
+                temperature
             })
         } catch (err) {
             res.send(err.message);
@@ -71,11 +100,13 @@ module.exports = {
     async renderEdit(req, res) {
         try {
             const itinerary = await ItineraryRepository.findById(req.params.id);
+            const randomQuotes = renderRandomQuote(quotes);
             res.render('edit.ejs', {
                 username: req.user.firstName,
                 itinerary,
-                moment: moment,
-                countries
+                moment,
+                countries,
+                randomQuotes
             })
         } catch (err) {
             res.send(err.message);

@@ -9,8 +9,17 @@
 
     <%- include('../partials/nav-menu/app-nav.ejs') %>
 
-    <!-- ==================== New Form Section ==================== -->
-    <section id="new-form" class="new-form">
+    <!-- ==================== Edit Form Section ==================== -->
+    <section class="edit-form-top">
+        <div class="container">
+            <div class="text-center">
+                <h3><%= randomQuotes.text %></h3>
+                <p>- <%= randomQuotes.author %></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="edit-form" class="edit-form">
         <div class="container">
             <h2>Edit Itinerary</h2>
             <form action="/app/my-itineraries/edit/<%= itinerary._id %>/?_method=PUT" method="POST">
@@ -18,13 +27,13 @@
                     <div class="form-group col-md-4">
                         <label for="destination">Destination:</label>
                         <select id="destination" name="destination" class="form-control">
-                            <% countries.forEach(country => { %>
-                                <% if (country.Name === itinerary.destination) { %>
-                                    <option value="<%= country.Name %>" selected><%= country.Name %></option>
+                            <% Object.keys(countries).forEach(country => { %>
+                                <% if (countries[country].name === itinerary.destination) { %>
+                                    <option value="<%= countries[country].name %>" selected><%= countries[country].name %></option>
                                 <% } else { %>
-                                    <option value="<%= country.Name %>"><%= country.Name %></option>
-                                <% } %>                              
-                            <% }) %>                          
+                                    <option value="<%= countries[country].name %>"><%= countries[country].name %></option>
+                                <% } %>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -47,7 +56,7 @@
                 <button type="submit" class="btn btn-info mt-2">Submit</button>
             </form>
         </div>
-    </section><!-- End New Form Section -->
+    </section><!-- End Edit Form Section -->
 
 </body>
 

@@ -36,14 +36,14 @@
                             
                 <!-- Card content -->
                 <div class="card-body" style="width: 21rem;">
-                    <% countries.forEach(country => { %>
-                        <% if (country.Name === itinerary.destination) { %>
-                            <img src="https://www.countryflags.io/<%= country.Code %>/shiny/32.png">
+                    <% Object.keys(countries).forEach(country => { %>
+                        <% if (countries[country].name === itinerary.destination) { %>
+                            <img src="https://www.countryflags.io/<%= countries[country].id %>/shiny/32.png">
                         <% } %>
                     <% }) %>
                     <!-- Title -->
                     <h5 class="card-title">
-                        <a href="/app/my-itineraries/<%= itinerary._id %>"><%= itinerary.destination %></a>
+                        <a href="/app/my-itineraries/<%= itinerary._id %>" class="showItinerary"><%= itinerary.destination %></a>
                     </h5>
                     <!-- Text -->
                     <p class="card-text"><%= moment(itinerary.dateFrom).format('ddd, MMM Do YYYY') %> -

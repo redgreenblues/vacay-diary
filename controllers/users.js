@@ -17,7 +17,6 @@ module.exports = {
         let errors_two = [];
 
         // Validation
-        // if (!firstName || !lastName || !email || !password || !password2) errors.push({ msg: 'Please fill in all the fields' });
         if (!firstName) errors.push({ firstNameMsg: 'First name cannot be empty' });
         if (!lastName) errors.push({ lastNameMsg: 'Last name cannot be empty' });
         if (!email) errors.push({ emailMsg: 'Email cannot be empty' });

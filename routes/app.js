@@ -1,4 +1,4 @@
-const appController = require('../controllers/appController');
+const appController = require('../controllers/app');
 const { ensureAuthenticated } = require('../config/auth');
 
 module.exports = app => {

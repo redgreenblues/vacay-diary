@@ -10,14 +10,14 @@
     <%- include('../partials/nav-menu/app-nav.ejs') %>
 
     <!-- ==================== INDIVIDUAL ITINERARY SECTION ==================== -->
-    <section id="one-itineraries-top">
+    <section id="one-itinerary-top">
         <div class="container">
             <div class="text-center">
-                <% countries.forEach(country => { %>
-                <% if (country.Name === itinerary.destination) { %>
-                <img src="https://www.countryflags.io/<%= country.Code %>/shiny/64.png" style="margin: 0; padding: 0">
-                <% } %>
-                <% }) %>
+                <% Object.keys(countries).forEach(country => { %>
+                    <% if (countries[country].name === itinerary.destination) { %>
+                            <img src="https://www.countryflags.io/<%= countries[country].id %>/shiny/64.png" style="margin: 0; padding: 0">
+                        <% } %>
+                    <% }) %>
                 <h3><%= itinerary.destination %></h3>
             </div>
         </div>
@@ -46,7 +46,7 @@
             </div>
 
             <!-- Travelling period section -->
-            <div class="row no-gutters">
+            <div class="row no-gutters border-bottom pb-5">
                 <div class="col-lg-4 col-md-6 content-item p-4" data-aos="fade-up">
                     <span><i class="material-icons" style="font-size: 3em">flight</i></span>
                     <h4>Travelling Period</h4>
@@ -58,32 +58,56 @@
                 <div class="col-lg-4 col-md-6 content-item p-4" data-aos="fade-up" data-aos-delay="100">
                     <span><i class="material-icons" style="font-size: 3em">access_time</i></span>
                     <h4>Time Zone</h4>
-                    <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno
-                        para dest</p>
+                    <% Object.keys(countries).forEach(country => { %>
+                        <% if (countries[country].name === itinerary.destination) { %>
+                            <p><%= countries[country].timezones %></p>                      
+                            <% const timezone = ct.getTimezonesForCountry(countries[country].id) %>
+                            <p>UTC / GMT <%= timezone[0].utcOffsetStr %></p>
+                            <p>DST <%= timezone[0].dstOffsetStr %></p>
+                        <% } %>
+                    <% }) %>
+                    
                 </div>
 
                 <div class="col-lg-4 col-md-6 content-item p-4" data-aos="fade-up" data-aos-delay="200">
                     <span><i class="material-icons" style="font-size: 3em">wb_cloudy</i></span>
                     <h4>Current Weather</h4>
-                    <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+                    <p><%= Math.round((temperature.temp - 273.15)) %>&#x2103;</p>
+                    <p><%= weather[0].description %></p>
+                    <p>Humidity: <%= temperature.humidity %></p>
                 </div>
             </div>
 
-            <div class="" style="width: 100%">
-                <!-- description -->
-                <div class="mt-4 shadow p-3 mb-4 bg-white rounded content" style="background-color: black; width: 100%">
-                    <i class="material-icons px-4 d-flex" style="font-size: 2.5em; color:#1bbca3;">description</i>
-                    <h4 class="px-4">Description</h4>
-                    <p class="px-4" style="margin-bottom: 20px"><%= itinerary.description %></p>
+            <!-- Description -->
+            <% if (itinerary.description !== '') { %>
+                <div class="row border-bottom pb-5">
+                    <div class="col-3 text-center">
+                        <div>
+                            <i class="material-icons m-0" style="font-size: 2.5em; color:#1bbca3;">description</i>
+                            <h4>Description</h4>
+                        </div>                  
+                    </div>
+                    <div class="col-9 d-flex align-items-center">
+                        <p style="white-space: pre-line"><%= itinerary.description %></p>
+                    </div>
                 </div>
-        
-                <!-- Plans -->
-                <div class="mt-4 shadow p-3 mb-4 bg-white rounded content">
-                    <i class="material-icons px-4 d-flex" style="font-size: 2.5em; color:#1bbca3;">assignment</i>
-                    <h4 class="px-4">Plans</h4>
-                    <p class="px-4" style="margin-bottom: 20px"><%= itinerary.plans %></p>
+            <% } %>
+
+            <!-- Plans -->
+            <% if (itinerary.plans !== '') { %>
+                <div class="row border-bottom pb-5">
+                    <div class="col-3 text-center">
+                        <div>
+                            <i class="material-icons m-0" style="font-size: 2.5em; color:#1bbca3;">assignment</i>
+                            <h4>Plans</h4>
+                        </div>                  
+                    </div>
+                    <div class="col-9 d-flex align-items-center">
+                        <p style="white-space: pre-line"><%= itinerary.plans %></p>
+                    </div>
                 </div>
-            </div>
+            <% } %>
+
         </div>
     </section><!-- End Individual Itinerary Section -->
 
