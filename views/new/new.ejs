@@ -35,17 +35,11 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dateFrom">Date From:</label>
-                        <input type="date" class="form-control" id="dateFrom" name="dateFrom" value="<%= typeof dateFrom != 'undefined' ? dateFrom : '' %>">
-                        <% if (dateError_msg != '') { %>
-                            <small><%= dateError_msg %></small>
-                        <% } %>
+                        <input type="date" class="form-control" id="dateFrom" name="dateFrom" value="<%= typeof dateFrom != 'undefined' ? dateFrom : '' %>" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dateTo">Date To:</label>
-                        <input type="date" class="form-control" id="dateTo" name="dateTo" value="<%= typeof dateTo != 'undefined' ? dateTo : '' %>">
-                        <% if (dateError_msg != '') { %>
-                            <small><%= dateError_msg %></small>
-                        <% } %>
+                        <input type="date" class="form-control" id="dateTo" name="dateTo" value="<%= typeof dateTo != 'undefined' ? dateTo : '' %>" required>
                     </div>
                 </div>
                 <div class="form-group">

@@ -39,17 +39,11 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dateFrom">Date From:</label>
-                        <input type="date" class="form-control" id="dateFrom" name="dateFrom" value="<%= typeof itinerary.dateFrom != 'undefined' ? moment(itinerary.dateFrom).format('YYYY-MM-DD') : '' %>">
-                        <% if (error_msg != '') { %>
-                            <small><%= error_msg %></small>
-                        <% } %>
+                        <input type="date" class="form-control" id="dateFrom" name="dateFrom" value="<%= typeof itinerary.dateFrom != 'undefined' ? moment(itinerary.dateFrom).format('YYYY-MM-DD') : '' %>" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dateTo">Date To:</label>
-                        <input type="date" class="form-control" id="dateTo" name="dateTo" value="<%= typeof itinerary.dateTo != 'undefined' ? moment(itinerary.dateTo).format('YYYY-MM-DD') : '' %>">
-                        <% if (error_msg != '') { %>
-                            <small><%= error_msg %></small>
-                        <% } %>
+                        <input type="date" class="form-control" id="dateTo" name="dateTo" value="<%= typeof itinerary.dateTo != 'undefined' ? moment(itinerary.dateTo).format('YYYY-MM-DD') : '' %>" required>
                     </div>
                 </div>
                 <div class="form-group">

@@ -5,6 +5,7 @@ const { generateRandomNum, renderRandomQuote, generateCountriesArray } = require
 const fetch = require('node-fetch');
 const moment = require('moment');
 const ct = require('countries-and-timezones');
+const { response } = require('express');
 const countries = ct.getAllCountries();
 global.fetch = fetch;
 require('dotenv').config();
@@ -39,9 +40,9 @@ module.exports = {
     },
     async index(req, res) {
         try {          
-            const response = await unsplash.search.photos('nature', generateRandomNum(50), 30, { orientation: 'landscape' });
+            const response = await unsplash.search.photos('travel', generateRandomNum(50), 30, { orientation: 'landscape' });
             const result = await response.json();
-            const photos = result.results;
+            const photos = await result.results;
             const itinerary = await ItineraryRepository.find(req.user.email);
             res.render('index.ejs', {
                 username: req.user.firstName,
@@ -58,15 +59,9 @@ module.exports = {
     async create(req, res) {
         try {
             const { destination, dateFrom, dateTo, description, plans } = await req.body;
-
-            if (!dateFrom || !dateTo) {
-                req.flash('dateError_msg', 'Date cannot be empty');
-                res.redirect('/app/new');
-            } else {
-                const newItinerary = ItineraryRepository.createItinerary(req.user.email, destination, dateFrom, dateTo, description, plans);
-                await newItinerary.save();
-                res.redirect('/app/my-itineraries');
-            }
+            const newItinerary = ItineraryRepository.createItinerary(req.user.email, destination, dateFrom, dateTo, description, plans);
+            await newItinerary.save();
+            res.redirect('/app/my-itineraries');                      
         } catch (err) {
             res.send(err.message);
         }
@@ -115,25 +110,17 @@ module.exports = {
                 description: req.body.description,
                 plans: req.body.plans
             };
-            let errors = [];
-
-            if (!itinerary.dateFrom) errors.push({ dateFromMsg: 'Date cannot be empty' });
-            if (!itinerary.dateTo) errors.push({ dateToMsg: 'Date cannot be empty' });
-
-            if (errors.length > 0) {
-                req.flash('error_msg', 'Date cannot be empty');
-            } else {
-                await ItineraryRepository.findByIdAndUpdate(req.params.id, itinerary);
-                res.redirect('/app/my-itineraries');
-            }                
+            const result = await ItineraryRepository.findByIdAndUpdate(req.params.id, itinerary);
+            req.flash('success_msg', `Successfully edited ${result.destination} itinerary`);
+            res.redirect(`/app/my-itineraries/${req.params.id}`);
         } catch (err) {
             res.send(err.message);
         }
     },
     async delete(req, res) {
         try {
-            await ItineraryRepository.findByIdAndDelete(req.params.id);
-            req.flash('success_msg', 'Successful deleted')
+            const result = await ItineraryRepository.findByIdAndDelete(req.params.id);
+            req.flash('success_msg', `Successfully deleted ${result.destination} itinerary`);
             res.redirect('/app/my-itineraries');
         } catch (err) {
             res.send(err.message);

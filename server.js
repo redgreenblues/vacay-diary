@@ -40,7 +40,8 @@ app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-    res.locals.dateError_msg = req.flash('dateError_msg');
+    res.locals.dateFrom_Error_msg = req.flash('dateFrom_Error_msg');
+    res.locals.dateTo_Error_msg = req.flash('dateTo_Error_msg');
     next();
 })
 
