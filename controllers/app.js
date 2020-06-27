@@ -1,13 +1,16 @@
 // Dependencies
 const ItineraryRepository = require('../repositories/itineraryRepository');
 const quotes = require('../models/db/quotes.json');
-const { generateRandomNum, renderRandomQuote } = require('../public/js/util');
+const { generateRandomNum, renderRandomQuote, generateCountriesArray } = require('../public/js/util');
 const fetch = require('node-fetch');
 const moment = require('moment');
 const ct = require('countries-and-timezones');
 const countries = ct.getAllCountries();
 global.fetch = fetch;
 require('dotenv').config();
+
+// Generate an array for countries
+const countryArr = generateCountriesArray(countries);
 
 // Random quotes
 const randomQuotes = renderRandomQuote(quotes);
@@ -30,8 +33,8 @@ module.exports = {
     async newForm(req, res) {
         res.render('new.ejs', {
             username: req.user.firstName,
-            countries,
-            randomQuotes
+            randomQuotes,
+            countryArr
         });
     },
     async index(req, res) {
@@ -55,23 +58,15 @@ module.exports = {
     async create(req, res) {
         try {
             const { destination, dateFrom, dateTo, description, plans } = await req.body;
-            let errors = [];
 
-            // Validation
-            if (!dateFrom || !dateTo) errors.push({ dateMsg: 'Date cannot be empty' });
-
-            if (errors.length > 0) {
-                res.render('new.ejs', {
-                    username: req.user.firstName,
-                    countries,
-                    randomQuotes,
-                    errors
-                })
+            if (!dateFrom || !dateTo) {
+                req.flash('dateError_msg', 'Date cannot be empty');
+                res.redirect('/app/new');
             } else {
                 const newItinerary = ItineraryRepository.createItinerary(req.user.email, destination, dateFrom, dateTo, description, plans);
                 await newItinerary.save();
                 res.redirect('/app/my-itineraries');
-            }          
+            }
         } catch (err) {
             res.send(err.message);
         }
@@ -100,13 +95,12 @@ module.exports = {
     async renderEdit(req, res) {
         try {
             const itinerary = await ItineraryRepository.findById(req.params.id);
-            const randomQuotes = renderRandomQuote(quotes);
             res.render('edit.ejs', {
                 username: req.user.firstName,
                 itinerary,
                 moment,
-                countries,
-                randomQuotes
+                randomQuotes,
+                countryArr
             })
         } catch (err) {
             res.send(err.message);
@@ -121,8 +115,17 @@ module.exports = {
                 description: req.body.description,
                 plans: req.body.plans
             };
-            await ItineraryRepository.findByIdAndUpdate(req.params.id, itinerary);
-            res.redirect('/app/my-itineraries');
+            let errors = [];
+
+            if (!itinerary.dateFrom) errors.push({ dateFromMsg: 'Date cannot be empty' });
+            if (!itinerary.dateTo) errors.push({ dateToMsg: 'Date cannot be empty' });
+
+            if (errors.length > 0) {
+                req.flash('error_msg', 'Date cannot be empty');
+            } else {
+                await ItineraryRepository.findByIdAndUpdate(req.params.id, itinerary);
+                res.redirect('/app/my-itineraries');
+            }                
         } catch (err) {
             res.send(err.message);
         }

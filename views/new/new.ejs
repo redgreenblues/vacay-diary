@@ -27,37 +27,34 @@
                     <div class="form-group col-md-4">
                         <label for="destination">Destination:</label>
                         <select id="destination" name="destination" class="form-control">
-                            <% Object.keys(countries).forEach(country => { %>
-                                    <option value="<%= countries[country].name %>"><%= countries[country].name %></option>                           
+                            <% let sorted_CountryArr = countryArr.sort(); %>
+                            <% sorted_CountryArr.forEach(country => { %>
+                                <option value="<%= country %>"><%= country %></option>
                             <% }) %>
                         </select>                      
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dateFrom">Date From:</label>
-                        <input type="date" class="form-control" id="dateFrom" name="dateFrom">
-                        <% if(typeof errors != 'undefined') { %>
-                            <% errors.forEach(error => { %>
-                                <small><%= error.dateMsg %></small>       
-                            <% }) %>
+                        <input type="date" class="form-control" id="dateFrom" name="dateFrom" value="<%= typeof dateFrom != 'undefined' ? dateFrom : '' %>">
+                        <% if (dateError_msg != '') { %>
+                            <small><%= dateError_msg %></small>
                         <% } %>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dateTo">Date To:</label>
-                        <input type="date" class="form-control" id="dateTo" name="dateTo">
-                        <% if(typeof errors != 'undefined') { %>
-                            <% errors.forEach(error => { %>
-                                <small><%= error.dateMsg %></small>       
-                            <% }) %>
+                        <input type="date" class="form-control" id="dateTo" name="dateTo" value="<%= typeof dateTo != 'undefined' ? dateTo : '' %>">
+                        <% if (dateError_msg != '') { %>
+                            <small><%= dateError_msg %></small>
                         <% } %>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" id="description" name="description" rows="5" placeholder="Is the country warm or cold? ...."></textarea>       
+                    <textarea class="form-control" id="description" name="description" rows="5" placeholder="Is the country warm or cold? ...."><%= typeof description != 'undefined' ? description : '' %></textarea>       
                 </div>
                 <div class="form-group">
                     <label for="plans">Plans:</label>
-                    <textarea class="form-control" id="plans" name="plans" rows="12" placeholder="What are your plans?"></textarea>
+                    <textarea class="form-control" id="plans" name="plans" rows="12" placeholder="What are your plans?"><%= typeof plans != 'undefined' ? plans : '' %></textarea>
                 </div>
                 <button type="submit" class="btn btn-info mt-2">Submit</button>
             </form>

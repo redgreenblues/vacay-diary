@@ -27,31 +27,38 @@
                     <div class="form-group col-md-4">
                         <label for="destination">Destination:</label>
                         <select id="destination" name="destination" class="form-control">
-                            <% Object.keys(countries).forEach(country => { %>
-                                <% if (countries[country].name === itinerary.destination) { %>
-                                    <option value="<%= countries[country].name %>" selected><%= countries[country].name %></option>
+                            <% let sorted_CountryArr = countryArr.sort(); %>
+                            <% sorted_CountryArr.forEach(country => { %>
+                                <% if (country === itinerary.destination) { %>
+                                    <option value="<%= country %>" selected><%= country %></option>
                                 <% } else { %>
-                                    <option value="<%= countries[country].name %>"><%= countries[country].name %></option>
+                                    <option value="<%= country %>"><%= country %></option>
                                 <% } %>
                             <% }) %>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dateFrom">Date From:</label>
-                        <input type="date" class="form-control" id="dateFrom" name="dateFrom" value="<%= moment(itinerary.dateFrom).format('YYYY-MM-DD') %>">
+                        <input type="date" class="form-control" id="dateFrom" name="dateFrom" value="<%= typeof itinerary.dateFrom != 'undefined' ? moment(itinerary.dateFrom).format('YYYY-MM-DD') : '' %>">
+                        <% if (error_msg != '') { %>
+                            <small><%= error_msg %></small>
+                        <% } %>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dateTo">Date To:</label>
-                        <input type="date" class="form-control" id="dateTo" name="dateTo" value="<%= moment(itinerary.dateTo).format('YYYY-MM-DD') %>">
+                        <input type="date" class="form-control" id="dateTo" name="dateTo" value="<%= typeof itinerary.dateTo != 'undefined' ? moment(itinerary.dateTo).format('YYYY-MM-DD') : '' %>">
+                        <% if (error_msg != '') { %>
+                            <small><%= error_msg %></small>
+                        <% } %>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" id="description" name="description" rows="5"><%= itinerary.description %></textarea>       
+                    <textarea class="form-control" id="description" name="description" rows="5"><%= typeof itinerary.description != 'undefined' ? itinerary.description : '' %></textarea>       
                 </div>
                 <div class="form-group">
                     <label for="plans">Plans:</label>
-                    <textarea class="form-control" id="plans" name="plans" rows="12"><%= itinerary.plans %></textarea>
+                    <textarea class="form-control" id="plans" name="plans" rows="12"><%= typeof itinerary.plans != 'undefined' ? itinerary.plans : '' %></textarea>
                 </div>
                 <button type="submit" class="btn btn-info mt-2">Submit</button>
             </form>
