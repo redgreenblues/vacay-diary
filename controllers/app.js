@@ -60,7 +60,8 @@ module.exports = {
             const { destination, dateFrom, dateTo, description, plans } = await req.body;
             const newItinerary = ItineraryRepository.createItinerary(req.user.email, destination, dateFrom, dateTo, description, plans);
             await newItinerary.save();
-            res.redirect('/app/my-itineraries');                      
+            req.flash('success_msg', `Successfully created a new ${newItinerary.destination} itinerary`);
+            res.redirect('/app/my-itineraries');
         } catch (err) {
             res.send(err.message);
         }
