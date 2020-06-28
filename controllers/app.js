@@ -5,7 +5,6 @@ const { generateRandomNum, renderRandomQuote, generateCountriesArray } = require
 const fetch = require('node-fetch');
 const moment = require('moment');
 const ct = require('countries-and-timezones');
-const { response } = require('express');
 const countries = ct.getAllCountries();
 global.fetch = fetch;
 require('dotenv').config();
