@@ -2,7 +2,7 @@
 An app to plan and manage holiday itineraries. Create an itinerary in Vacay Diary whenever you are travelling overseas and all your itineraries will be stored in one place. 
 
 ## Table of Contents
- - [Project Demo](#project-demo)
+ - [Application Link](#application-link)
  - [Application MVP](#application-mvp)
  - [Dependencies](#dependencies)
  - [Difficulties Faced](#difficulties-faced)
@@ -30,7 +30,7 @@ An app to plan and manage holiday itineraries. Create an itinerary in Vacay Diar
  - **Moment.js** is used as a wrapper for the native JavaScript Date object
  - **Mongoose** is used as a schema-based solution to model the application data. It manages relationships between data, provides schema validation, and is used to translate between object in code and the representation of those objects in MongoDB
  - **Node-fetch** is used to fetch resources and making API requests
- - **Node-geocoder** is used to get geolocation
+ - **Node-geocoder** is used to get geolocation for countries
  - **Passport.js** is used to authenticate username and password
  - **SweetAlert** is used as a replacement for JavaScript's popup boxes (modals)
  - **Unsplash-js** is used as a server-side Javascript wrapper for working with [Unsplash API](https://unsplash.com/developers) to retrieve photos
@@ -94,18 +94,18 @@ As a user, I want to be able to log out.
 | Index       | /                                 | GET        | Home page
 |             | /app                              | GET        | Home page after user logged in
 |             | /app/my-itineraries               | GET        | Display all itineraries by user
-| New         | /app/new                          | GET        | Show new form for new itinerary entry
+| New         | /app/new                          | GET        | Shows new form for new itinerary entry
 | Create      | /app/my-itineraries               | POST       | Creates a new itinerary
-| Show        | /app/my-itineraries/:id           | GET        | Show one specified itinerary
-| Edit        | /app/my-itineraries/edit/:id      | GET        | Shows edit form for one itinerary
+| Show        | /app/my-itineraries/:id           | GET        | Shows one particular itinerary
+| Edit        | /app/my-itineraries/edit/:id      | GET        | Shows edit form for a particular itinerary
 | Update      | /app/my-itineraries/edit/:id      | PUT        | Updates a particular itinerary
 | Destroy     | /app/my-itineraries/:id           | DELETE     | Deletes a particular itinerary
 
 ### User routes
 | NAME        | PATH                              | HTTP VERB  | PURPOSE
 | ----------- |:----------------------------------| :---------:| :--------
-| New         | /register                         | GET        | Show registration form for user to register
-|             | /login                            | GET        | Show login form for user to login
+| New         | /register                         | GET        | Shows registration form for user to register
+|             | /login                            | GET        | Shows login form for user to login
 |             | /logout                           | GET        | Log user out and terminate a login session
 | Create      | /register                         | POST       | Creates a new user upon successful registration
 |             | /login                            | POST       | Login user upon successful authentication
