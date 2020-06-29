@@ -10,7 +10,7 @@ An app to plan and manage holiday itineraries. Create an itinerary in Vacay Diar
  - [RESTful Routes](#restful-routes)
 
 ## Application Link
-**Vacay Diary** is available to try on [https://vacay-diary.herokuapp.com]()
+**Vacay Diary** is available to try on [https://vacay-diary.herokuapp.com](https://vacay-diary.herokuapp.com)
 
 ## Application MVP
  - A working full-stack application using **Node.js**, **MongoDB**, **Express** and **EJS**
