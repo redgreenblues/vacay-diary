@@ -14,9 +14,10 @@ require('dotenv').config();
 const countryArr = generateCountriesArray(countries);
 
 // Geocoding
+const GOOGLEMAP_API_KEY = process.env.GOOGLEMAP_API_KEY;
 const options = {
     provider: 'google',
-    apiKey: process.env.GOOGLEMAP_API_KEY,
+    apiKey: GOOGLEMAP_API_KEY,
     formatter: null
 };
 const geocoder = NodeGeocoder(options);
@@ -98,7 +99,8 @@ module.exports = {
                 weather,
                 temperature,
                 lat,
-                lng
+                lng,
+                GOOGLEMAP_API_KEY
             })
         } catch (err) {
             res.send(err.message);
