@@ -8,7 +8,7 @@ const passport = require('passport');
 const methodOverride = require('method-override');
 
 // Set multiple views directory
-app.set('views', [__dirname + '/views', __dirname + '/views/index', __dirname + '/views/new', __dirname + '/views/show', __dirname + '/views/app', __dirname + '/views/edit']);
+app.set('views', [__dirname + '/views', __dirname + '/views/app/index', __dirname + '/views/app/new', __dirname + '/views/app/show', __dirname + '/views/app', __dirname + '/views/app/edit']);
 
 // Middleware to use PUT and DELETE
 app.use(methodOverride('_method'));
