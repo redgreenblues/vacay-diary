@@ -8,9 +8,9 @@ const deleteConfirmation = () => {
             icon: 'warning',
             buttons: {
                 confirm: 'Confirm',
-                cancel: true             
+                cancel: true
             }
-        }).then(result => {                      
+        }).then(result => {
             if (result) $(`#${event_target.parentNode.id}`).submit();
             else event.preventDefault();
         })
@@ -31,4 +31,5 @@ $(() => {
     };
 
     deleteConfirmation();
+
 })

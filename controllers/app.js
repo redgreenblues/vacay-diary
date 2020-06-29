@@ -6,11 +6,20 @@ const fetch = require('node-fetch');
 const moment = require('moment');
 const ct = require('countries-and-timezones');
 const countries = ct.getAllCountries();
+const NodeGeocoder = require('node-geocoder');
 global.fetch = fetch;
 require('dotenv').config();
 
 // Generate an array for countries
 const countryArr = generateCountriesArray(countries);
+
+// Geocoding
+const options = {
+    provider: 'google',
+    apiKey: process.env.GOOGLEMAP_API_KEY,
+    formatter: null
+};
+const geocoder = NodeGeocoder(options);
 
 // Random quotes
 const randomQuotes = renderRandomQuote(quotes);
@@ -74,6 +83,12 @@ module.exports = {
             const response = await fetch_response.json();
             const weather = await response.weather;
             const temperature = await response.main;
+
+            // Get geolocation of country
+            const geo_response = await geocoder.geocode(`${itinerary.destination}`);
+            const lat = parseFloat(geo_response[0].latitude);
+            const lng = parseFloat(geo_response[0].longitude);
+
             res.render('show-itinerary.ejs', {
                 username: req.user.firstName,
                 itinerary,
@@ -81,7 +96,9 @@ module.exports = {
                 countries,
                 ct,
                 weather,
-                temperature
+                temperature,
+                lat,
+                lng
             })
         } catch (err) {
             res.send(err.message);

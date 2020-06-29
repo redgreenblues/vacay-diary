@@ -113,8 +113,30 @@
             </div>
             <% } %>
 
+            <div class="row border-bottom pb-5" id="map"></div>
+
         </div>
     </section><!-- End Individual Itinerary Section -->
+
+    <!-- Google Map script -->
+    <script>
+        let map;
+        document.addEventListener("DOMContentLoaded", () => {
+            let s = document.createElement("script");
+            document.head.appendChild(s);
+            s.addEventListener("load", () => {
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: {
+                        lat: +"<%= lat %>",
+                        lng: +"<%= lng %>"
+                    },
+                    zoom: 7,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+            });
+            s.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLEMAP_API_KEY}`;
+        });
+    </script>
 
 </body>
 

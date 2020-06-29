@@ -30,6 +30,7 @@ An app to plan and manage holiday itineraries. Create an itinerary in Vacay Diar
  - **Moment.js** is used as a wrapper for the native JavaScript Date object
  - **Mongoose** is used as a schema-based solution to model the application data. It manages relationships between data, provides schema validation, and is used to translate between object in code and the representation of those objects in MongoDB
  - **Node-fetch** is used to fetch resources and making API requests
+ - **Node-geocoder** is used to get geolocation
  - **Passport.js** is used to authenticate username and password
  - **SweetAlert** is used as a replacement for JavaScript's popup boxes (modals)
  - **Unsplash-js** is used as a server-side Javascript wrapper for working with [Unsplash API](https://unsplash.com/developers) to retrieve photos
