@@ -41,6 +41,50 @@ An app to plan and manage holiday itineraries. Create an itinerary in Vacay Diar
  > Problem getting data saved into MongoDB using Mongoose schema initially. Turns out that if you already have a collection in MongoDB, the schema model function needs to match with the existing collection name on the 3rd parameter.
 
 ## Wireframes and User Stories
+### 1. Home Page
+As a user, I want to know what this application is about when I access the website at a glance.
+
+<a href="./public/img/readme/1.jpg" target="_blank" ><img src="./public/img/readme/1.jpg" width="50%"></a>
+
+### 2. Registration Page
+As a user, I want to be able to register a new account.
+
+<a href="./public/img/readme/2.jpg" target="_blank" ><img src="./public/img/readme/2.jpg" width="50%"></a>
+
+### 3. Login Page
+As a user, I want to be able to login to the application.
+
+<a href="./public/img/readme/3.jpg" target="_blank" ><img src="./public/img/readme/3.jpg" width="50%"></a>
+
+### 4. Create Itinerary Page
+As a user, I want to be able to create a new itinerary.
+
+<a href="./public/img/readme/4.jpg" target="_blank" ><img src="./public/img/readme/4.jpg" width="50%"></a>
+
+### 5. My Itineraries Page
+As a user, I want to be able to view all of my itineraries that I created.
+
+<a href="./public/img/readme/5.jpg" target="_blank" ><img src="./public/img/readme/5.jpg" width="50%"></a>
+
+### 6. Show Page
+As a user, I want to be able to view individual itinerary in details.
+
+<a href="./public/img/readme/6.jpg" target="_blank" ><img src="./public/img/readme/6.jpg" width="50%"></a>
+
+### 7. Edit Page
+As a user, I want to be able to edit my itineraries.
+
+<a href="./public/img/readme/7.jpg" target="_blank" ><img src="./public/img/readme/7.jpg" width="50%"></a>
+
+### 8. Delete Itinerary
+As a user, I want to be able to delete my itineraries.
+
+<a href="./public/img/readme/8a.jpg" target="_blank" ><img src="./public/img/readme/8a.jpg" width="25%"></a> <a href="./public/img/readme/8b.jpg" target="_blank" ><img src="./public/img/readme/8b.jpg" width="25%"></a>
+
+### 9. Log Out
+As a user, I want to be able to log out.
+
+<a href="./public/img/readme/9.jpg" target="_blank" ><img src="./public/img/readme/9.jpg" width="50%"></a>
 
 ## RESTful Routes
 ### Application routes
