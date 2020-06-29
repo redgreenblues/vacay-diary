@@ -105,6 +105,3 @@ dist
 
 # OS Generated file
 .DS_Store
-
-# API KEYS
-public/js/API-keys.js
