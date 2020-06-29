@@ -35,6 +35,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.5s;
     padding: 20px 0;
     background: #1e4356;
+    min-width: 100%;
 }
 
 #header.header-transparent {
@@ -171,18 +172,15 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
+@media (max-width: 1000px) {
+    #hero img {
+        height: 100%;
+    }
+}
+
 /* ====================================================
                     ABOUT US SECTION
 ==================================================== */
-
-/* section {
-    /* padding: 60px 0; */
-
-/* } */
-
-/* .section-bg {
-    background-color: #f2f5f4;
-} */
 
 .about {
     margin-top: 50px;
@@ -503,6 +501,15 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
+@media (max-width: 1000px) {
+    .footer .row {
+        display: none;
+    }
+    .footer img {
+        display: none
+    }
+}
+
 /* ====================================================
                     LOGIN SECTION
 ==================================================== */
@@ -621,4 +628,3 @@ h1, h2, h3, h4, h5, h6 {
 .login small {
     color: #E74C3C;
 }
-
