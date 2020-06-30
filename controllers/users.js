@@ -26,7 +26,7 @@ module.exports = {
         if (password !== password2) errors_two.push({ msg: 'Passwords do not match' });
         if (password.length < 8 && password.length > 0) errors_two.push({ msg: 'Password should be at least 8 characters' });
 
-        if (errors.length > 0) {
+        if (errors.length > 0 || errors_two.length > 0) {
             res.render('registration.ejs', {
                 errors,
                 errors_two,

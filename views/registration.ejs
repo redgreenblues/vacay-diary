@@ -34,7 +34,11 @@
                                 value="<%= typeof firstName != 'undefined' ? firstName : '' %>">
                             <% if(typeof errors != 'undefined') { %>
                                 <% errors.forEach(error => { %>
-                                    <small><%= error.firstNameMsg %></small>       
+                                    <% if (error.firstNameMsg) { %>
+                                        <small><%= error.firstNameMsg %></small>
+                                    <% } else { %>
+                                        <% null %>
+                                    <% } %>
                                 <% }) %>
                             <% } %>
                         </div>
@@ -45,7 +49,11 @@
                                 value="<%= typeof lastName != 'undefined' ? lastName : '' %>">
                             <% if(typeof errors != 'undefined') { %>
                                 <% errors.forEach(error => { %>
-                                    <small><%= error.lastNameMsg %></small>       
+                                    <% if (error.lastNameMsg) { %>
+                                        <small><%= error.lastNameMsg %></small>
+                                    <% } else { %>
+                                        <% null %>
+                                    <% } %>       
                                 <% }) %>
                             <% } %>
                         </div>
@@ -57,7 +65,11 @@
                             value="<%= typeof email != 'undefined' ? email : '' %>">
                         <% if(typeof errors != 'undefined') { %>
                             <% errors.forEach(error => { %>
-                                <small><%= error.emailMsg %></small>       
+                                <% if (error.emailMsg) { %>
+                                    <small><%= error.emailMsg %></small>
+                                <% } else { %>
+                                    <% null %>
+                                <% } %>       
                             <% }) %>
                         <% } %>
                     </div>
@@ -67,9 +79,16 @@
                         <input type="password" id="password" name="password" class="form-control registerInput"
                             aria-describedby="defaultRegisterFormPasswordHelpBlock"
                             value="<%= typeof password != 'undefined' ? password : '' %>">
+                            <small class="form-text text-muted">
+                                At least 8 characters
+                            </small>
                         <% if(typeof errors != 'undefined') { %>
                             <% errors.forEach(error => { %>
-                                <small><%= error.passwordMsg %></small>       
+                                <% if (error.passwordMsg) { %>
+                                    <small><%= error.passwordMsg %></small>
+                                <% } else { %>
+                                    <% null %>
+                                <% } %>       
                             <% }) %>
                         <% } %>
                     </div>
@@ -81,7 +100,11 @@
                             value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
                         <% if(typeof errors != 'undefined') { %>
                             <% errors.forEach(error => { %>
-                                <small><%= error.password2Msg %></small>       
+                                <% if (error.password2Msg) { %>
+                                    <small><%= error.password2Msg %></small>
+                                <% } else { %>
+                                    <% null %>
+                                <% } %>       
                             <% }) %>
                         <% } %>
                     </div>
