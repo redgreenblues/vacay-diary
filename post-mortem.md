@@ -14,7 +14,7 @@ After learning how to do authentication, there was a lot of changes in my code.
 Next time, before starting, I will need to understand the individual stacks better and if it will affect the codes.
 
 #### What in my process and approach to this project went well that I would repeat next time?
-- YouTube, Google, asking for help from classmates and TA
+- YouTube, Google, asking for help from classmates and the instructor team
 - Having a clear picture of what I want in my app
 
 ## Code and Code Design
@@ -28,7 +28,7 @@ Next time, before starting, I will need to understand the individual stacks bett
 ## Unit 1 Post Mortem
 
 #### What habits did I use during this unit that helped me?
-- Using Google, YouTube and asking for help from classmates and TA.
+- Using Google, YouTube and asking for help from classmates and the instructor team
 - Start early
 - Make some time off everyday for coding of app (unexpected issues always occurs and it always take a lot of time to debug)
 
